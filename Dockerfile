@@ -24,7 +24,7 @@ RUN dotnet publish "CURD-API.csproj" -c Release -o /app/publish /p:UseAppHost=fa
 # Create the runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 EXPOSE 443
 
 # Force IPv4 inside final runtime container

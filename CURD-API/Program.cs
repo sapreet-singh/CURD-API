@@ -34,6 +34,10 @@ builder.Services.AddCors(options =>
     );
 });
 
+// Bind to Render PORT BEFORE build
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 var app = builder.Build();
 
 app.UseCors("AllowReact");
@@ -41,9 +45,6 @@ app.UseCors("AllowReact");
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
-
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Urls.Add($"http://0.0.0.0:{port}");
 
 // Only redirect HTTPS in development
 if (app.Environment.IsDevelopment())
