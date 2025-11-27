@@ -2,6 +2,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
+# Force IPv4 during restore/build
+ENV DOTNET_SYSTEM_NET_SOCKETS_USEONLYIPV4=1
+ENV NPGSQL_IPADDRESSFAMILY=InterNetwork
+
 # Copy the project file and restore dependencies
 COPY ["CURD-API/CURD-API.csproj", "CURD-API/"]
 RUN dotnet restore "CURD-API/CURD-API.csproj"
@@ -22,6 +26,10 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+
+# Force IPv4 inside final runtime container
+ENV DOTNET_SYSTEM_NET_SOCKETS_USEONLYIPV4=1
+ENV NPGSQL_IPADDRESSFAMILY=InterNetwork
 
 # Copy the published application
 COPY --from=publish /app/publish .
