@@ -47,10 +47,10 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 // Only redirect HTTPS in development
-if (app.Environment.IsDevelopment())
-{
-    app.UseHttpsRedirection();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseHttpsRedirection();
+//}
 
 //app.UseHttpsRedirection();
 
