@@ -6,8 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Force IPv4 only (fix Supabase IPv6 issue)
 AppContext.SetSwitch("System.Net.Sockets.UseOnlyIPv4", true);
-//AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
 
 // Add services to the container.
 
@@ -46,13 +44,6 @@ app.UseCors("AllowReact");
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// Only redirect HTTPS in development
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseHttpsRedirection();
-//}
-
-//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

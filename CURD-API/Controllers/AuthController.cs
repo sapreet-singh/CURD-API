@@ -27,7 +27,9 @@ namespace CURD_API.Controllers
             var user = new AuthUser
             {
                 Username = dto.Username,
-                PasswordHash = Hash(dto.Password)
+                PasswordHash = Hash(dto.Password),
+                Role = "User"
+
             };
 
             _context.AuthUsers.Add(user);
@@ -43,7 +45,7 @@ namespace CURD_API.Controllers
             if (user == null || user.PasswordHash != Hash(dto.Password))
                 return BadRequest("Invalid credentials");
 
-            return Ok(new { token = "sample-static-token", username = user.Username });
+            return Ok(new { token = "sample-static-token", username = user.Username, role = user.Role });
         }
 
         private string Hash(string password)
