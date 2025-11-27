@@ -42,7 +42,16 @@ app.UseCors("AllowReact");
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://0.0.0.0:{port}");
+
+// Only redirect HTTPS in development
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
