@@ -3,7 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Force IPv4 only (fix Supabase IPv6 issue)
+AppContext.SetSwitch("System.Net.Sockets.UseOnlyIPv4", true);
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+
 // Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
