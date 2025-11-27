@@ -25,7 +25,6 @@ RUN dotnet publish "CURD-API.csproj" -c Release -o /app/publish /p:UseAppHost=fa
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 EXPOSE 8080
-EXPOSE 443
 
 # Force IPv4 inside final runtime container
 ENV DOTNET_SYSTEM_NET_SOCKETS_USEONLYIPV4=1
